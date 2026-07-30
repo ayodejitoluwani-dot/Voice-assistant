@@ -1,0 +1,16 @@
+#!/bin/bash
+# This is what macOS runs when you double-click "NCAIR Voice Assistant.app".
+# It lives at <project>/NCAIR Voice Assistant.app/Contents/MacOS/launcher --
+# three levels down from the actual project folder (where app.py, venv/,
+# etc. live), so we resolve back up to there first.
+
+DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
+cd "$DIR" || exit 1
+
+if [ ! -d "venv" ]; then
+    osascript -e 'display alert "Voice Assistant" message "venv not found. Set up the project (see README) before using this app icon."'
+    exit 1
+fi
+
+source venv/bin/activate
+python launcher.py

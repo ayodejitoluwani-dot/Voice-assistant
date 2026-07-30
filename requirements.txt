@@ -1,0 +1,19 @@
+# For Colab: torch and transformers are already installed with compatible
+# versions, so they're deliberately left out here to avoid downgrading them.
+# For local Mac use, use requirements-mac.txt instead, which pins everything
+# including torch/transformers to versions that actually work together.
+
+librosa>=0.10
+soundfile>=0.12
+pydub>=0.25
+deep-translator>=1.11
+pytest>=8.0
+
+# Google Calendar + Gmail integration (schedule_event, set_reminder, send_message)
+google-api-python-client>=2.100
+anthropic>=0.40
+google-genai>=0.3
+llama-cpp-python>=0.3  # optional -- only needed for the NCAIR local agent backend
+google-auth-httplib2>=0.2
+google-auth-oauthlib>=1.2
+dateparser>=1.2

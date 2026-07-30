@@ -1,0 +1,23 @@
+# Secrets -- never commit these
+secrets.env
+credentials.json
+token.json
+contacts.json
+
+# Downloaded models -- too large for git (GBs), and some are gated/licensed.
+# Anyone cloning this repo should run download_models.py themselves.
+models/
+
+# Python environment -- huge, platform-specific, never belongs in git.
+# Anyone cloning this repo creates their own with:
+#   python3.12 -m venv venv && source venv/bin/activate && pip install -r requirements-mac.txt
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Task history -- personal usage logs, not part of the codebase
+completed_tasks/
+
+# macOS
+.DS_Store

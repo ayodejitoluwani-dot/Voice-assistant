@@ -1,0 +1,42 @@
+# Pinned specifically for Intel Macs, where PyTorch stopped shipping new
+# builds after 2.2.2. Everything else here is pinned to versions known to
+# work WITH torch 2.2.2 -- newer transformers/numpy will break it (see
+# project history: transformers>=4.44 requires torch>=2.4, and numpy>=2.0
+# breaks torch 2.2.2's C extensions).
+#
+# If you're running this on Colab or a machine with a newer torch available,
+# use requirements.txt instead (no pins -- Colab already has compatible
+# versions preinstalled).
+
+numpy>=1.22,<2
+scipy>=1.10,<1.13  # newer scipy requires numpy 2.x, which breaks torch 2.2.2
+torch==2.2.2
+torchvision==0.17.2
+torchaudio==2.2.2
+transformers==4.43.4
+
+# librosa pulls in numba, which has no prebuilt wheel for some numpy/Python
+# combinations on macOS and falls back to building from source -- that build
+# needs LLVM and OpenMP headers this Mac doesn't have, and fails. Pinning to
+# versions with prebuilt wheels avoids the source build entirely.
+llvmlite==0.43.0
+numba==0.60.0
+
+huggingface_hub>=0.23  # needed by download_models.py
+librosa>=0.10
+soundfile>=0.12
+pydub>=0.25
+deep-translator>=1.11
+streamlit>=1.35
+streamlit-mic-recorder>=0.0.8
+pytest>=8.0
+
+# Google Calendar + Gmail integration (schedule_event, set_reminder, send_message)
+google-api-python-client>=2.100
+llama-cpp-python>=0.3  # NCAIR agent backend (default) -- compiles from source, needs
+                        # Xcode Command Line Tools on Mac (xcode-select --install)
+anthropic>=0.40  # Claude agent backend, optional fallback (needs ANTHROPIC_API_KEY, paid)
+google-genai>=0.3  # Gemini agent backend, optional fallback (needs GEMINI_API_KEY, free tier)
+google-auth-httplib2>=0.2
+google-auth-oauthlib>=1.2
+dateparser>=1.2  # turns "5pm" / "tomorrow" / "next monday" into real datetimes
